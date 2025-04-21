@@ -1,0 +1,5 @@
+# Ignore the Additional_Dataset_Processed directory
+Additional_Dataset_Processed/
+
+# Ignore the source_test directory
+source_test/
