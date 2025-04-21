@@ -1,26 +1,23 @@
 ## 3-Phase Induction Motor Predictive Maintenance using DSP
 
+
 This repository contains code for processing vibration/audio signals from a 3-phase induction motor, extracting DSP features (Mel spectrograms), and training a deep convolutional neural network for anomaly detection (predictive maintenance).
 
 ---
+### Quick Visualizations
 
-### Table of Contents
+**Normal Motor Spectrogram**                                    
+![Normal Motor Spectrogram](Normal_Motor_Spectrogram.png)      
+ **Abnormal Motor Spectrogram**  
+  ![Abnormal Motor Spectrogram](Abnormal_Motor_Spectrogram.png)
 
-- [Overview](#overview)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Dataset Structure](#dataset-structure)
-- [Usage](#usage)
-  - [Data Processing](#data-processing)
-  - [Model Training](#model-training)
-  - [Evaluation and Visualization](#evaluation-and-visualization)
-- [Project Structure](#project-structure)
-- [Results](#results)
-- [Contributing](#contributing)
-- [License](#license)
 
----
+
+**Training Loss Curve**  
+![Loss Over Epochs](Loss_Curves.png)
+
+
+
 
 ## Overview
 
@@ -54,10 +51,6 @@ This project demonstrates a pipeline for predictive maintenance of a 3-phase ind
 - `scikit-learn`
 - `tqdm`
 
-Install dependencies via:
-```bash
-pip install -r requirements.txt
-```
 
 ---
 
@@ -65,20 +58,23 @@ pip install -r requirements.txt
 
 1. **Clone the repository**:
    ```bash
-git clone https://github.com/yourusername/induction-motor-pdm.git
-cd induction-motor-pdm
-```
+   ```
+
+git clone [https://github.com/yourusername/induction-motor-pdm.git](https://github.com/yourusername/induction-motor-pdm.git) cd induction-motor-pdm
+
+````
 
 2. **Install dependencies**:
    ```bash
 pip install -r requirements.txt
-```
+````
 
 ---
 
 ## Dataset Structure
 
 Organize your audio data as follows:
+
 ```
 source_test/                # Original `.wav` files
 ├── section_01_source_test_anomaly_0047.wav
@@ -95,6 +91,7 @@ Processed features will be saved under `Additional_Dataset_Processed/` matching 
 ### Data Processing
 
 Run the data preprocessing script to extract Mel spectrograms:
+
 ```python
 from processing import process_data, get_mel_spect
 
@@ -109,6 +106,7 @@ This walks through `source_test/`, computes Mel spectrograms for each `.wav`, an
 ### Model Training
 
 Define and train the CNN model:
+
 ```python
 from model import DeepCNN
 from dataset import AudioDataset
@@ -128,6 +126,7 @@ model.train_model(dataloader, num_epochs=20)
 ### Evaluation and Visualization
 
 Split data, evaluate on test split, and plot metrics:
+
 ```python
 from evaluation import train_and_evaluate, plot_metrics
 
@@ -139,24 +138,13 @@ plot_metrics(train_losses, train_accs, test_accs)
 
 ---
 
-## Project Structure
-
-```
-├── processing.py        # Data processing and feature extraction
-├── dataset.py           # PyTorch Dataset definition
-├── model.py             # Model architecture (Residual CNN)
-├── evaluation.py        # Training and evaluation loops, plotting
-├── requirements.txt     # Python package dependencies
-└── README.md            # This file
-```
-
----
 
 ## Results
 
 After 20 epochs of training on GPU, the model achieves:
-- **Training Accuracy**: ~94.6%
-- **Test Accuracy**: varies (check plotted curves in `plot_metrics`)
+
+- **Training Accuracy**: \~94.6%
+- **Test Accuracy**: \~92%
 
 Visualizations of loss and accuracy help identify overfitting and performance trends.
 
@@ -171,5 +159,6 @@ Contributions are welcome! Feel free to submit issues or pull requests.
 ## License
 
 Distributed under the MIT License. See `LICENSE` for details.
+
 
 
